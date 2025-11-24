@@ -1,42 +1,24 @@
-/*.hero {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    background: url("https://images.pexels.com/photos/1660197/pexels-photo-1660197.jpeg") center/cover no-repeat;
-    background-attachment: fixed;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-
+* {
+    box-sizing: border-box;
 }
 
-.heroContent {
-    position: relative;
-    max-width: 600px;
-    color: #fff;
-    padding: 20px;
-    z-index: 3;
+html,
+body {
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
 }
 
-.hero::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(1px);
-    z-index: 1;
-} */
 
+
+/* ---- HEADER ------ */
 /* NAVBAR */
 .navbar {
     position: fixed;
     top: 0;
     width: 100%;
     padding: 20px 60px;
+    overflow-x: clip;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -48,7 +30,7 @@
 .navbar.scrolled {
     backdrop-filter: blur(10px);
     background: rgba(0, 0, 0, 0.35);
-    padding: 14px 50px;
+    padding: 0 50px;
 }
 
 .logo {
@@ -63,21 +45,63 @@
     list-style: none;
     display: flex;
     gap: 40px;
-    margin-right: 8rem;
 }
 
 .navLinks li {
+
+    position: relative;
     cursor: pointer;
-    font-size: 1rem;
-    font-weight: 500;
-    color: #ffffff;
-    transition: 0.3s;
-    opacity: 0.85;
+    font-size: 1.1rem;
+    font-weight: 540;
+    color: #fff;
+    padding: 6px 0;
+    transition: color 0.25s ease-in-out;
 }
 
 .navLinks li:hover {
     opacity: 1;
     transform: translateY(-3px);
+}
+
+/* Default Nav Item */
+.navItem {
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.05rem;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+/* Hover */
+.navItem:hover {
+    color: #ffffff;
+}
+
+/* Underline only on hover */
+.navItem:hover::after {
+    width: 100%;
+}
+
+/* Underline Animation Base */
+.navItem::after {
+    content: "";
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background: #E7F1AB;
+    transition: width 0.3s ease;
+}
+
+/* Active Page — only color highlight */
+.active {
+    color: #E7F1AB !important;
+}
+
+/* ACTIVE — No underline */
+.active::after {
+    width: 0 !important;
 }
 
 
@@ -92,7 +116,6 @@
     justify-content: center;
     text-align: center;
     overflow: hidden;
-
     padding: 0 20px;
 }
 
@@ -100,38 +123,44 @@
 .heroBg {
     position: absolute;
     inset: 0;
-    /*background-image: url("https://images.pexels.com/photos/1660197/pexels-photo-1660197.jpeg");
-    background-size: cover;
-    background-position: center;
-    transition: transform 0.4s ease-out;
-    z-index: -2; */
-    background: url("https://images.pexels.com/photos/1660197/pexels-photo-1660197.jpeg?auto=compress&cs=tinysrgb&w=1600")
-        center/cover no-repeat;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    /* ensure no spill outside container */
+
+    background: url("https://images.pexels.com/photos/1660197/pexels-photo-1660197.jpeg?auto=compress&cs=tinysrgb&w=1600") center/cover no-repeat;
     z-index: 1;
     transform: translateY(0);
     transition: transform 0.2s ease-out;
+    transform: scale(1);
+    animation: slowZoom 2s ease-out forwards; 
+
+    transform-origin: center;
+    will-change: transform;
+    clip-path: inset(0);  
+}
+
+/* Smooth cinematic zoom */
+@keyframes slowZoom {
+    from {
+        transform: scale(1);
+    }
+
+    to {
+        transform: scale(1.12);
+        /* slight zoom */
+    }
 }
 
 /* Overlay */
 .heroOverlay {
     position: absolute;
     inset: 0;
-    /*background: rgba(0, 0, 0, 0.45);
-    backdrop-filter: blur(1px);
-    z-index: -1; */
-
     background: rgba(0, 0, 0, 0.30);
     z-index: 2;
 }
 
 .heroContent {
-    /*position: relative;
-    max-width: 600px;
-    color: #fff;
-    padding: 20px;
-    z-index: 3;
-    opacity: 0;
-    animation: fadeUp 1.3s ease-out forwards; */
 
     position: relative;
     z-index: 3;
@@ -209,23 +238,13 @@
 }
 
 .featureCard {
-    background: transparent ;
+    background: transparent;
     color: #ffffffa9;
     font-size: 1rem;
     font-weight: 600;
     white-space: nowrap;
 }
 
-
-/*.featureCard {
-    background: #e7f1a8;
-    padding: 18px 24px;
-    border-radius: 14px;
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: #364c84;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-} */
 
 /* Fade-in Animation */
 .fadeItem {
@@ -237,6 +256,274 @@
 .visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ---- ABOUT ----- */
+/* ---------- OurSpaces section ---------- */
+.ourSpaces {
+    background: #fffdf5;
+    /* Ivory Glow */
+    padding: 90px 45px !important;
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+
+}
+
+.ourSpacesInner {
+    max-width: 1100px;
+    margin: 0 auto 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+    align-items: center;
+    padding: 0 24px;
+}
+
+/* Quote left */
+.quoteWrap {
+    text-align: left;
+}
+
+.quote {
+    color: #364C84;
+    font-size: 3.3rem;
+    font-weight: 800;
+    line-height: 1.05;
+    margin: 0;
+}
+
+/* Description right */
+.descWrap {
+    text-align: left;
+    padding-left: 130px;
+}
+
+.desc {
+    color: #333333;
+    /* Charcoal for paragraph */
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin: 0;
+}
+
+/* Cards grid */
+.cardsGrid {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+    padding: 0 24px;
+}
+
+/* Card basics */
+.card {
+    position: relative;
+    overflow: visible;
+    
+    background: #ffffff;
+    box-shadow: 0 12px 30px rgba(19, 28, 51, 0.08);
+    display: flex;
+    flex-direction: column;
+    min-height: 360px;
+
+    /* Smooth motion fix */
+    will-change: transform;
+    transform: translateZ(0);
+    transition: transform 0.35s ease-out, box-shadow 0.35s ease-out;
+
+    border-radius: 20px;
+    /*overflow: visible;  allows glow to show outside */
+}
+
+/* Smooth Hover Lift */
+.card:hover {
+    transform: translateY(-6px);
+    /* no important */
+    box-shadow: 0 22px 60px rgba(37, 58, 130, 0.12);
+}
+
+
+/* image area */
+.cardMedia {
+    height: 280px;
+    background-size: cover;
+    background-position: center;
+    border-top-left-radius: 14px;
+    border-top-right-radius: 14px;
+}
+
+/* body */
+.cardBody {
+    padding: 18px 18px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex: 1;
+}
+
+.cardBody h4 {
+    margin: 0;
+    color: #253a82;
+    /* Midnight-ish strong */
+    font-size: 1.12rem;
+    font-weight: 700;
+}
+
+.cardBody p {
+    margin: 0;
+    color: #333333;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    flex: 1;
+}
+
+
+/* button */
+.learnMoreWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin: 40px 0 0;
+    /*max-width: none; */
+
+}
+
+.learnMoreBtn {
+    padding: 12px 30px;
+    border-radius: 999px;
+    border: none;
+    background: #E7F1AB;
+    color: #253a82;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform .25s ease, box-shadow .25s ease;
+}
+
+.learnMoreBtn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(37, 58, 130, 0.15);
+}
+
+
+
+/* ========== Animated color-shift border (A) ========== */
+
+/* Solid subtle border matching card color */
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 2px;
+    border: 2px solid currentColor;
+    opacity: 0.65;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.card1 {
+    color: #E7F18B; /* Lemon Green */
+}
+
+.card2 {
+    color: rgba(255,164,170,1); /* Pastel Coral */
+}
+
+.card3 {
+    color: rgba(149,177,238,1); /* Sky Blue */
+}
+
+
+/* Glowing dot + fade trail */
+.card::after {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 12px;
+    border-radius: 50%;
+    
+    offset-path: inset(0 round 20px);
+    animation: followBorder 28.2s linear infinite;
+
+    /* Trail effect */
+    box-shadow:
+        0 0 16px 6px currentColor,
+        0 0 30px 14px currentColor,
+        0 0 50px 25px currentColor;
+    
+    z-index: 6;
+    pointer-events: none;
+}
+
+/* Individual Card Accent Colors */
+.card1::after {
+    color: rgba(231,241,171,1); /* Lemonade Green */
+}
+
+.card2::after {
+    color: rgba(255,164,170,1); /* Pastel Coral */
+}
+
+.card3::after {
+    color: rgba(149,177,238,1); /* Sky Blue */
+}
+
+/* Smooth border following motion */
+@keyframes followBorder {
+    0%   { offset-distance: 0%; }
+    25%  { offset-distance: 25%; }
+    50%  { offset-distance: 50%; }
+    75%  { offset-distance: 75%; }
+    100% { offset-distance: 100%; }
+}
+
+
+
+
+
+
+
+
+
+
+/* Responsive */
+@media (max-width: 980px) {
+    .ourSpacesInner {
+        grid-template-columns: 1fr;
+        gap: 18px;
+        text-align: center;
+    }
+
+    .quoteWrap,
+    .descWrap {
+        text-align: center;
+    }
+
+    .cardsGrid {
+        grid-template-columns: 1fr;
+    }
+
+    .card {
+        min-height: auto;
+    }
+}
+
+/* small screens tweaks */
+@media (max-width: 520px) {
+    .quote {
+        font-size: 1.6rem;
+    }
+
+    .desc {
+        font-size: 0.98rem;
+    }
+
+    .cardMedia {
+        height: 160px;
+    }
 }
 
 /* Responsive */
