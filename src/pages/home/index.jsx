@@ -4,6 +4,12 @@ import styles from "./home.module.css";
 import coworkImg from '../../assets/cowork.jpg';
 import privateImg from '../../assets/private.jpg';
 import meetingImg from '../../assets/meeting.jpg';
+import bgVideo from "../../assets/abstract.mp4";
+{/*import img1 from "../../assets/img1.jpg";
+import img2 from "../../assets/img2.jpg";
+import img3 from "../../assets/img3.jpg";
+import img4 from "../../assets/img4.jpg";
+import img5 from "../../assets/img5.jpg"; */}
 
 
 export default function Home() {
@@ -14,6 +20,25 @@ export default function Home() {
         const bg = document.querySelector(`.${styles.heroBg}`);
         const fadeItems = document.querySelectorAll(`.${styles.fadeItem}`);
 
+        const headingEl = document.querySelector(`.${styles.bigHeading}`);
+        const cardEls = Array.from(document.querySelectorAll(`.${styles.reveal}`));
+
+        const revealWhySection = () => {
+            if (!headingEl) return;
+            const r = headingEl.getBoundingClientRect();
+            if (r.top < window.innerHeight - 120) {
+                headingEl.classList.add(styles.revealedHeading);
+            }
+        };
+
+        const revealCardsOnScroll = () => {
+            cardEls.forEach((el, idx) => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 120) {
+                    setTimeout(() => el.classList.add(styles.revealed), idx * 120);
+                }
+            });
+        };
 
         const handleScroll = () => {
             const scrollY = window.scrollY;
@@ -34,6 +59,10 @@ export default function Home() {
                     el.classList.add(styles.visible);
                 }
             });
+
+            // 🔹 Moved scroll-triggered reveals *here*
+            revealWhySection();
+            revealCardsOnScroll();
 
         };
 
@@ -86,6 +115,9 @@ export default function Home() {
 
 
             {/*  OurSpaces - about  */}
+
+
+
             <motion.section
                 className={styles.ourSpaces}
                 initial="hidden"
@@ -208,6 +240,84 @@ export default function Home() {
                 </motion.div>
 
             </motion.section>
+
+
+
+            {/* ---------- WhyChooseUs Section ---------- */}
+            <section className={styles.whyChooseUs} data-section="why-choose-us">
+                <video className={styles.bgVideo} src={bgVideo} autoPlay muted loop playsInline />
+                <div className={styles.videoOverlay} />
+
+                <div className={styles.chooseContent}>
+                    <h2 className={styles.bigHeading}>WHY RVH SPACES?</h2>
+
+                    <div className={styles.cardsWrap}>
+
+                        <article className={`${styles.hCard} ${styles.cardOne} ${styles.reveal}`}>
+                            <div className={styles.hCardInner}>
+                                <div className={styles.hCardTitle}>
+                                    <span>Flexible Workspaces</span>
+                                    <span className={styles.hCardIndex}>01</span>
+                                </div>
+                                <div className={styles.hCardBody}>
+                                    <p>Find a space that works the way you do.
+                                        Private suites, shared desks, and dynamic meeting rooms.
+                                        Designed to adapt to every workflow and working style.</p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article className={`${styles.hCard} ${styles.cardTwo} ${styles.reveal}`}>
+                            <div className={styles.hCardInner}>
+                                <div className={styles.hCardTitle}>
+                                    <span>Tech-Infused Productivity</span>
+                                    <span className={styles.hCardIndex}>02</span>
+                                </div>
+                                <div className={styles.hCardBody}>
+                                    <p>Powered by fast connectivity and seamless digital tools.
+                                        Smart booking and integrated AV support every project.
+                                        Work without interruptions, from startup to scale-up.</p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article className={`${styles.hCard} ${styles.cardThree} ${styles.reveal}`}>
+                            <div className={styles.hCardInner}>
+                                <div className={styles.hCardTitle}>
+                                    <span>Community Collaboration</span>
+                                    <span className={styles.hCardIndex}>03</span>
+                                </div>
+                                <div className={styles.hCardBody}>
+                                    <p>A place where creators, founders, and innovators connect.
+                                        Networking happens naturally through shared spaces and events.
+                                        Build meaningful relationships that fuel progress.</p>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article className={`${styles.hCard} ${styles.cardFour} ${styles.reveal}`}>
+                            <div className={styles.hCardInner}>
+                                <div className={styles.hCardTitle}>
+                                    <span>Premium Comfort Spaces</span>
+                                    <span className={styles.hCardIndex}>04</span>
+                                </div>
+                                <div className={styles.hCardBody}>
+                                    <p>Thoughtful design meets everyday comfort and focus.
+                                        Ergonomic seating, natural light, and calming breakout zones.
+                                        Workspace that supports wellness while delivering productivity.</p>
+                                </div>
+                            </div>
+                        </article>
+
+                    </div>
+                </div>
+            </section>
+            {/* ---------- end WhyChooseUs ---------- */}
+
+
+
+
+
 
 
 

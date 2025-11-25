@@ -133,11 +133,11 @@ body {
     transform: translateY(0);
     transition: transform 0.2s ease-out;
     transform: scale(1);
-    animation: slowZoom 2s ease-out forwards; 
+    animation: slowZoom 2s ease-out forwards;
 
     transform-origin: center;
     will-change: transform;
-    clip-path: inset(0);  
+    clip-path: inset(0);
 }
 
 /* Smooth cinematic zoom */
@@ -321,7 +321,7 @@ body {
 .card {
     position: relative;
     overflow: visible;
-    
+
     background: #ffffff;
     box-shadow: 0 12px 30px rgba(19, 28, 51, 0.08);
     display: flex;
@@ -425,15 +425,18 @@ body {
 }
 
 .card1 {
-    color: #E7F18B; /* Lemon Green */
+    color: #E7F18B;
+    /* Lemon Green */
 }
 
 .card2 {
-    color: rgba(255,164,170,1); /* Pastel Coral */
+    color: rgba(255, 164, 170, 1);
+    /* Pastel Coral */
 }
 
 .card3 {
-    color: rgba(149,177,238,1); /* Sky Blue */
+    color: rgba(149, 177, 238, 1);
+    /* Sky Blue */
 }
 
 
@@ -444,7 +447,7 @@ body {
     width: 10px;
     height: 12px;
     border-radius: 50%;
-    
+
     offset-path: inset(0 round 20px);
     animation: followBorder 28.2s linear infinite;
 
@@ -453,31 +456,291 @@ body {
         0 0 16px 6px currentColor,
         0 0 30px 14px currentColor,
         0 0 50px 25px currentColor;
-    
+
     z-index: 6;
     pointer-events: none;
 }
 
 /* Individual Card Accent Colors */
 .card1::after {
-    color: rgba(231,241,171,1); /* Lemonade Green */
+    color: rgba(231, 241, 171, 1);
+    /* Lemonade Green */
 }
 
 .card2::after {
-    color: rgba(255,164,170,1); /* Pastel Coral */
+    color: rgba(255, 164, 170, 1);
+    /* Pastel Coral */
 }
 
 .card3::after {
-    color: rgba(149,177,238,1); /* Sky Blue */
+    color: rgba(149, 177, 238, 1);
+    /* Sky Blue */
 }
 
 /* Smooth border following motion */
 @keyframes followBorder {
-    0%   { offset-distance: 0%; }
-    25%  { offset-distance: 25%; }
-    50%  { offset-distance: 50%; }
-    75%  { offset-distance: 75%; }
-    100% { offset-distance: 100%; }
+    0% {
+        offset-distance: 0%;
+    }
+
+    25% {
+        offset-distance: 25%;
+    }
+
+    50% {
+        offset-distance: 50%;
+    }
+
+    75% {
+        offset-distance: 75%;
+    }
+
+    100% {
+        offset-distance: 100%;
+    }
+}
+
+
+/* ----- WHY CHOOSE US -----
+.whyChooseUs {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.bgVideo {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+}
+
+.videoOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgb(135 206 250 / 82%);
+    backdrop-filter: saturate(120%);
+    z-index: 2;
+}
+
+.chooseContent {
+    position: relative;
+    z-index: 3;
+    text-align: center;
+    color: #ffffff;
+    padding: 6rem 2rem;
+    max-width: 900px;
+} */
+
+
+
+/*-------- WHY CHOOSE US - section -------- */
+.whyChooseUs {
+    position: relative;
+    width: 100%;
+    padding: 60px 20px;
+    display: block;
+    overflow: hidden;
+    background: transparent;
+    min-height: 70vh;
+    /* adjust height for section */
+}
+
+/* VIDEO & TINT */
+.bgVideo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+    opacity: 0.95;
+    transform: scale(1.03);
+    /* tiny scale for softness */
+}
+
+.videoOverlay {
+    position: absolute;
+    inset: 0;
+    background: rgb(135 206 250 / 79%);
+    /* soft sky-blue tint */
+    z-index: 2;
+    pointer-events: none;
+}
+
+/* CONTENT WRAPPER */
+.chooseContent {
+    position: relative;
+    z-index: 3;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 24px;
+}
+
+/* Oversized heading that scrolls up first */
+.bigHeading {
+    font-size: clamp(42px, 6.5vw, 75px);
+    line-height: 0.9;
+    color: #333333;
+    font-weight: 800;
+    margin: 0 0 28px;
+    transform: translateY(36px);
+    opacity: 0;
+    text-align: center;
+    transition: transform .9s cubic-bezier(.2, .9, .3, 1), opacity .9s ease;
+}
+
+/* reveal class toggled by JS */
+.revealedHeading {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+/* Cards wrapper (vertical stack of horizontal cards) */
+.cardsWrap {
+    display: grid;
+    gap: 18px;
+    margin-top: 28px;
+}
+
+/* Horizontal Card basic */
+.hCard {
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.85);
+    box-shadow: 0 6px 20px rgba(10, 20, 40, 0.06);
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .35s ease, box-shadow .35s ease;
+    display: block;
+    will-change: transform;
+    border: 1px solid rgba(0, 0, 0, 0.04);
+    --card-padding: 22px;
+}
+
+/* Hover lift */
+.hCard:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 22px 60px rgba(10, 20, 40, 0.12);
+}
+
+/* inner layout */
+.hCardInner {
+    display: flex;
+    align-items: center;
+    /* gap: 16px; */
+    padding: var(--card-padding);
+
+    flex-direction: column; /* stack vertically now */
+    align-items: flex-start;
+}
+
+/* title row */
+.hCardTitle {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.hCardTitle span:first-child {
+    font-size: 1.3rem;
+    color: #253a82;
+    /* strong midnight for title text */
+    font-weight: 700;
+}
+
+.hCardIndex {
+    color: rgba(0, 0, 0, 0.45);
+    font-weight: 700;
+    font-size: 1.3rem;
+
+    margin-left: auto; /* pushes number fully right */
+    min-width: 40px;
+    text-align: right;
+}
+
+/* hidden body (revealed on hover) */
+.hCardBody {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition: max-height .5s ease, opacity .45s ease;
+    /*padding: 0 var(--card-padding) var(--card-padding); */
+    background: transparent;
+    color: #333333;
+    font-size: 0.98rem;
+    line-height: 1.55;
+
+    transform: translateY(-10px);
+    max-width: 600px;
+}
+
+/* When hovered, expand body */
+.hCard:hover .hCardBody {
+    max-height: 280px;
+    /* enough to show content; tweak if needed */
+    opacity: 1;
+
+    transform: translateY(0);
+}
+
+/* Progressive shade variations for each card (subtle) */
+.cardOne {
+    background: rgba(208, 217, 245, 0.9);
+}
+
+/* lavender dust light */
+.cardTwo {
+    background: rgba(188, 201, 245, 0.92);
+}
+
+/* slightly darker */
+.cardThree {
+    background: rgba(149, 177, 238, 0.94);
+}
+
+/* more darker */
+.cardFour {
+    background: #85a6ed;
+}
+
+/* sky blue lightest/darker */
+
+.cardOne .hCardTitle span:first-child {
+    color: #364C84;
+}
+
+.cardTwo .hCardTitle span:first-child {
+    color: #253a82;
+}
+
+.cardThree .hCardTitle span:first-child {
+    color: #253a82;
+}
+
+.cardFour .hCardTitle span:first-child {
+    color: #253a82;
+}
+
+/* Reveal animation for each card (staggered). 'reveal' class present on each card initially */
+.reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: transform .75s cubic-bezier(.2, .9, .3, 1), opacity .75s ease;
+}
+
+/* When the visible class is added by JS, card reveals */
+.revealed {
+    opacity: 1;
+    transform: translateY(0);
 }
 
 
@@ -508,6 +771,24 @@ body {
 
     .card {
         min-height: auto;
+    }
+}
+
+/* Why choose us */
+@media (max-width: 880px) {
+    .hCardInner {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+
+    .hCardTitle span:first-child {
+        font-size: 1rem;
+    }
+
+    .hCardBody {
+        padding-left: var(--card-padding);
+        padding-right: var(--card-padding);
     }
 }
 
