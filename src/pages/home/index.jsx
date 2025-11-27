@@ -1,6 +1,10 @@
 import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import styles from "./home.module.css";
+import { LocationSection } from "../../components";
+import { RatingsSection } from "../../components";
+import { GallerySection } from "../../components";
+
 import coworkImg from '../../assets/cowork.jpg';
 import privateImg from '../../assets/private.jpg';
 import meetingImg from '../../assets/meeting.jpg';
@@ -315,11 +319,9 @@ export default function Home() {
             {/* ---------- end WhyChooseUs ---------- */}
 
 
-
-
-
-
-
+            <LocationSection />
+            <RatingsSection />
+            <GallerySection />
 
 
         </>

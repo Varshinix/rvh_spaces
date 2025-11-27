@@ -1,0 +1,381 @@
+/* ===========================
+   GALLERY FULL CSS
+   =========================== */
+
+.galleryRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0;
+    /*max-height: 30rem;
+    overflow: hidden; */
+
+    position: relative;
+    overflow: visible;
+
+}
+
+/* Base style for each card */
+.gItem {
+    width: 220px;
+    height: 220px;
+    border-radius: 14px;
+    overflow: hidden;
+    background: #ffffff;
+}
+
+.gItem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+
+.galleryWrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 3rem;
+}
+
+.galleryText {
+    width: 100%;
+    text-align: center;
+    margin-bottom: -8rem;
+}
+
+.galleryHeading {
+    font-size: 3rem;
+    font-weight: 800;
+    color: #003366;
+    /*letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-top: 3rem; */
+
+    margin: 0;
+}
+
+.galleryDescription {
+    font-size: 1.1rem;
+    color: #333333;
+    max-width: 600px;
+    margin: 0 auto;
+    margin-top: 0.5rem;
+    line-height: 1.6;
+}
+
+
+
+/* ===========================
+   INDIVIDUAL CARDS (EDIT FREELY)
+   =========================== */
+
+.card1 {
+    /* g1 */
+    margin-top: 18rem;
+    margin-right: -5rem;
+}
+
+.card2 {
+    /* yellow */
+    background: #FFE9A8;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+.card3 {
+    /* g2 */
+    margin-top: 23rem;
+    margin-left: -3rem;
+}
+
+.card4 {
+    /* g3 */
+    margin-top: 12rem;
+    margin-left: -2rem;
+}
+
+.card5 {
+    /* green */
+    background: #D8F7C8;
+    margin-top: 1rem;
+    margin-left: -2rem;
+}
+
+.card6 {
+    /* g4 */
+    margin-top: 18rem;
+    margin-left: -3rem;
+}
+
+
+.cardText {
+    margin-top: 0.8rem;
+    text-align: center;
+    font-size: 1rem;
+    color: #444;
+}
+
+.card1Text {
+    position: absolute;
+    margin-top: 30px;
+    font-size: 1rem;
+    color: #444;
+    width: 200px;
+    text-align: center;
+}
+
+.card6Text {
+    position: absolute;
+    margin-top: 30px;
+    margin-left: 10px;
+    font-size: 1rem;
+    color: #444;
+    width: 200px;
+    text-align: center;
+}
+
+
+
+.galleryBottomNote {
+    margin-top: 40px;
+    text-align: center;
+    font-size: 1rem;
+    color: #333;
+    font-weight: 500;
+    width: 400px;
+}
+
+
+/* ----Animations ----------*/
+.galleryText,
+.galleryBottomNote,
+.gItem {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: 0.8s ease-out;
+}
+
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.showLate {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.2s;
+    /* bottom text appears last */
+    margin-bottom: 3rem;
+}
+
+
+.fadeCard1 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.4s;
+}
+
+.fadeCard2 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.55s;
+}
+
+.fadeCard3 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.7s;
+}
+
+.fadeCard4 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.85s;
+}
+
+.fadeCard5 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.00s;
+}
+
+.fadeCard6 {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 1.15s;
+}
+
+
+
+/* CONTACT SECTION */
+/* CONTACT SECTION MAIN WRAPPER */
+.contactSection {
+    width: 100%;
+    padding: 4rem 2rem;
+    background: #e0fca4;
+    /* lemonade green */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+    flex-wrap: wrap;
+    border-radius: 25px;
+}
+
+/* LEFT SIDE */
+.contactLeft {
+    flex: 1;
+    max-width: 450px;
+}
+
+.contactTitle {
+    font-size: 2.6rem;
+    font-weight: 800;
+    color: #333333;
+    /* dark grey */
+    margin-bottom: 1rem;
+}
+
+.contactDesc {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+}
+
+.contactInfo p {
+    font-size: 1rem;
+    color: #333;
+    margin: 0.6rem 0;
+}
+
+/* SOCIAL ICONS */
+.socialRow {
+    margin-top: 2rem;
+    display: flex;
+    gap: 1.2rem;
+}
+
+.socialRow img {
+    width: 28px;
+    height: 28px;
+    cursor: pointer;
+    filter: brightness(0);
+    /* makes icon pure black */
+    transition: 0.2s ease;
+}
+
+.socialRow img:hover {
+    transform: scale(1.1);
+}
+
+/* RIGHT SIDE FORM CARD */
+.contactCard {
+    flex: 1;
+    max-width: 420px;
+    background: #003366;
+    /* midnight blue */
+    padding: 2.5rem;
+    border-radius: 20px;
+    color: white;
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.15);
+}
+
+.cardHeading {
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+/* FORM INPUTS */
+.contactForm {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.contactForm input,
+.contactForm textarea {
+    width: 100%;
+    padding: 1rem;
+    border-radius: 10px;
+    border: none;
+    font-size: 1rem;
+}
+
+.contactForm textarea {
+    height: 120px;
+}
+
+/* BUTTON */
+.contactForm button {
+    padding: 1rem;
+    background: #d0d9f5;
+    /* lemonade green */
+    color: #003366;
+    /* midnight blue for contrast */
+    border: none;
+    border-radius: 10px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.contactForm button:hover {
+    background: #95b1ee;
+}
+
+
+
+
+/* FOOTER */
+.footer {
+    width: 100%;
+    background: #333333;
+    color: white;
+    padding: 4rem 2rem 2rem 2rem;
+}
+
+.footerColumns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    justify-content: space-between;
+    max-width: 1100px;
+    margin: auto;
+}
+
+.footerCol {
+    min-width: 200px;
+}
+
+.footerCol h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+}
+
+.footerCol a,
+.footerCol p {
+    display: block;
+    color: #c9d6e9;
+    font-size: 0.95rem;
+    margin-bottom: 0.5rem;
+    text-decoration: none;
+}
+
+.footerCol a:hover {
+    text-decoration: underline;
+}
+
+.footerBottom {
+    text-align: center;
+    margin-top: 3rem;
+    font-size: 0.9rem;
+    color: #9fb3cc;
+}

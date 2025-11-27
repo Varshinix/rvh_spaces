@@ -1,0 +1,387 @@
+:root {
+  --ivory: #fffdf5;
+  --midnight: #364c84;
+  --charcoal: #333333;
+  --accent: #e7f1ab;
+}
+
+/* SECTION */
+.ratingsSection {
+  background: var(--ivory);
+  padding: 5rem 0;
+  width: 100%;
+  color: var(--charcoal);
+}
+
+/* MAIN GRID: LEFT + RIGHT */
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+/* LEFT SECTION */
+.left {
+  width: 100%;
+}
+
+/* LEFT SIDE ROW → stats + image */
+.leftRow {
+  display: flex;
+  align-items: flex-start;
+  /*gap: 40px; */
+}
+
+/* LEFT COLUMN: 3 blocks stacked */
+.leftStatsCol {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  flex: 0.6; /* width ratio */
+  padding: 2rem 4rem;
+}
+
+
+/* GENERIC BLOCK */
+.block {
+  background: white;
+  padding: 18px;
+  border-radius: 12px;
+  box-shadow: 0 8px 28px rgba(17, 24, 39, 0.06);
+  overflow: hidden;
+}
+
+.blockHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.blockBody {
+  margin-top: 12px;
+}
+
+/* ⭐ STAR RATING */
+.starsWrap {
+  display: flex;
+  gap: 6px;
+  font-size: 1.25rem;
+  color: #d8d8d8;
+}
+
+.star {
+  opacity: 0;
+  transform: translateY(6px) scale(0.92);
+  transition: all 260ms cubic-bezier(.2,.9,.3,1);
+  color: #d8d8d8;
+}
+
+.starVisible {
+  color: #ffb74d;
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+/* Rating Number */
+.ratingNumber {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+  color: var(--midnight);
+  font-size: 1.1rem;
+}
+
+/* SMALL LABELS + STATS */
+.smallStat {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  font-size: 1.05rem;
+  font-weight: 700;
+}
+
+.smallLabel {
+  display: block;
+  font-size: 0.95rem;
+  color: #666;
+  margin-left: 8px;
+}
+
+/* EXPERT THUMB IMAGES */
+.expertsThumbs {
+  display: flex;
+  align-items: center;
+  gap: -8px;
+}
+
+.teamImg {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  object-fit: cover;
+  transform: translateY(8px) scale(0.96);
+  opacity: 0;
+  border: 2px solid white;
+  box-shadow: 0 6px 18px rgba(20,20,30,0.06);
+  transition: transform 360ms cubic-bezier(.2,.9,.3,1),
+              opacity 360ms ease;
+}
+
+.teamImgVisible {
+  transform: translateY(0) scale(1);
+  opacity: 1;
+}
+
+.expertNumber {
+  font-size: 1.05rem;
+  color: var(--midnight);
+  font-weight: 700;
+}
+
+/* PERCENTAGE */
+.percentWrap {
+  display: flex;
+  align-items: center;
+}
+
+.percentLarge {
+  font-size: 2rem;
+  color: var(--midnight);
+}
+
+/* IMAGE + FLOATING CARD */
+.imageWrapper {
+  position: relative;
+  flex: 1.1;
+}
+
+.bigImage {
+  width: 80%;
+  height: 420px;
+  object-fit: cover;
+  border-radius: 20px;
+  display: block;
+}
+
+/* FLOATING 5K CARD */
+.floatingCard {
+  position: absolute;
+  right: -22px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: #fff;
+  padding: 18px 22px;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+}
+
+.floatingNumber {
+  font-size: 1.8rem;
+  color: var(--midnight);
+  font-weight: 800;
+}
+
+.floatingLabel {
+  font-size: 0.95rem;
+  color: #555;
+  margin-top: 4px;
+}
+
+/* RIGHT MAIN COLUMN */
+.right {
+  position: relative;
+  padding-left: 6px;
+  padding-top: 2rem;
+
+   opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.9s cubic-bezier(.2,.9,.3,1),
+              transform 0.9s cubic-bezier(.2,.9,.3,1);
+
+}
+
+.rightVisible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.title {
+  font-size: clamp(28px, 5.8vw, 40px);
+  color: var(--midnight);
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  margin: 0 0 12px;
+  text-transform: uppercase;
+}
+
+.description {
+  color: #444;
+  font-size: 0.98rem;
+  line-height: 1.45;
+  margin-bottom: 22px;
+  max-width: 320px;
+}
+
+
+
+
+/* RESPONSIVE */
+@media (max-width: 880px) {
+  .container {
+    grid-template-columns: 1fr;
+  }
+
+  .right {
+    order: -1;
+    margin-bottom: 18px;
+  }
+
+  .leftRow {
+    flex-direction: column;
+    gap: 28px;
+  }
+
+  .bigImage {
+    height: 220px;
+  }
+
+  .teamImg {
+    width: 36px;
+    height: 36px;
+  }
+
+  .floatingCard {
+    right: 10px;
+    top: 85%;
+    transform: translateY(0);
+  }
+}
+
+
+/* ---- review ------ */
+.reviewsSection {
+  margin-top: 90px;
+  background: #d0d9f5; /* Lavender Mist */
+  padding: 50px;
+  border-radius: 18px;
+}
+
+.reviewsTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 42px;
+  color: #1d1d39;
+  margin-top: 0;
+}
+
+.carouselOuter {
+  overflow: hidden;
+}
+
+.carouselInner {
+  display: flex;
+  gap: 20px;
+  width: max-content;
+  transform: translateX(0);
+  opacity: 0;
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.carouselStart {
+  opacity: 1;
+  animation: slideLoop 22s linear infinite;
+}
+
+@keyframes slideLoop {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-33.33%); } /* slide by 1 card width */
+}
+
+.reviewCard {
+  width: 300px;
+  min-height: 170px;
+  padding: 18px;
+  border-radius: 16px;
+  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.32);
+  box-shadow: 0 8px 14px rgba(0,0,0,0.08);
+}
+
+.stars {
+  color: #ffb800;
+  font-size: 20px;
+}
+
+.reviewText {
+  font-size: 0.9rem;
+  line-height: 1.45;
+  margin: 10px 0 14px;
+}
+
+.userRow {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.avatar {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+}
+
+.userName {
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.userRole {
+  font-size: 0.75rem;
+  color: #666;
+}
+
+
+/* ----- marquee ------ 
+.marqueeSection {
+  padding: 28px 0;
+  background: #9fbdfe; 
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.marqueeTrack {
+  display: flex;
+  align-items: center;
+  gap: 6rem;
+  width: max-content;
+  animation: marqueeScroll 20s linear infinite;
+}
+
+@keyframes marqueeScroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.brandLogo {
+  height: 7rem;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+
+.brandLogo:hover {
+  transform: scale(1.1);
+} 
+*/
+
+
+
+
+
+
+
+
