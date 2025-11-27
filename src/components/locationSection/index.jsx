@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import styles from "./LocationSection.module.css";
+import styles from "./locationSection.module.css";
 
 import img1 from "../../assets/img1.jpg";
 import img2 from "../../assets/img2.jpg";
