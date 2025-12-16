@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./locationSection.module.css";
 
 import img1 from "../../assets/img1.jpg";
@@ -15,8 +16,18 @@ const images = [
   { src: img5, title: "Noida, Delhi" },
 ];
 
+
+
 export default function LocationSection() {
   const [index, setIndex] = useState(0);
+
+  // onclick
+  const navigate = useNavigate();
+
+  const handleExploreLocations = () => {
+    navigate("/locations");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   const nextSlide = () => {
     setIndex((prev) => (prev + 1) % images.length);
@@ -91,9 +102,9 @@ export default function LocationSection() {
         {/* Bottom */}
 
         <div className={`${styles.bottomRow} ${styles.revealItem}`}>
-          <p className={styles.quote}>“Find your <br /> perfect workspace”</p>
-          <button className={styles.exploreBtn}>Explore More</button>
-          <p className={styles.desc}>Where productivity <br />finds its place</p>
+          <p className={styles.quote1}>“Find your <br /> perfect workspace”</p>
+          <button className={styles.exploreBtn} onClick={handleExploreLocations}>Explore More</button>
+          <p className={styles.desc1}>Where productivity <br />finds its place</p>
         </div>
       </section>
     </>

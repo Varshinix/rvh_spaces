@@ -1,5 +1,5 @@
 // src/components/gallerySection/index.jsx
-import React from "react";
+import React, { useState } from "react";
 import { useInView } from "react-intersection-observer";
 import styles from "./gallerySection.module.css";
 
@@ -19,6 +19,28 @@ export default function GallerySection() {
         threshold: 0.2,
         triggerOnce: true,
     });
+
+    // form
+    const [name, setName] = useState("");
+    const [email, setEmail] = useState("");
+    const [message, setMessage] = useState("");
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        if (!name || !email || !message) {
+            alert("⚠️ Please fill all the fields before sending.");
+            return;
+        }
+
+        alert("✅ Message sent successfully!");
+
+        setName("");
+        setEmail("");
+        setMessage("");
+    };
+
+
 
     return (
         <div className={styles.galleryWrapper}>
@@ -98,12 +120,37 @@ export default function GallerySection() {
                 <div className={styles.contactCard}>
                     <h3 className={styles.cardHeading}>Get in Touch</h3>
 
-                    <form className={styles.contactForm}>
+                    {/* <form className={styles.contactForm}>
                         <input type="text" placeholder="Your Name" />
                         <input type="email" placeholder="Your Email" />
                         <textarea placeholder="Your Message"></textarea>
                         <button type="submit">Send Message</button>
+                    </form> */}
+
+                    <form className={styles.contactForm} onSubmit={handleSubmit}>
+                        <input
+                            type="text"
+                            placeholder="Your Name"
+                            value={name}
+                            onChange={(e) => setName(e.target.value)}
+                        />
+
+                        <input
+                            type="email"
+                            placeholder="Your Email"
+                            value={email}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
+
+                        <textarea
+                            placeholder="Your Message"
+                            value={message}
+                            onChange={(e) => setMessage(e.target.value)}
+                        ></textarea>
+
+                        <button type="submit">Send Message</button>
                     </form>
+
                 </div>
 
             </div>
@@ -116,13 +163,15 @@ export default function GallerySection() {
 
                     <div className={styles.footerCol}>
                         <h4>Rvh Spaces</h4>
-                        <p>Designing meaningful digital experiences.</p>
+                        <p>Designing meaningful digital <br /> experiences. Crafting digital spaces <br /> with purpose and clarity.</p>
                     </div>
 
                     <div className={styles.footerCol}>
                         <h4>Quick Links</h4>
                         <a href="#home">Home</a>
-                        <a href="#gallery">Gallery</a>
+                        <a href="#About">About</a>
+                        <a href="#locations">locations</a>
+                        <a href="#Our Story">Our Story</a>
                         <a href="#contact">Contact</a>
                     </div>
 
@@ -135,8 +184,10 @@ export default function GallerySection() {
 
                     <div className={styles.footerCol}>
                         <h4>Connect</h4>
-                        <p>Email: hello@RvhSpaces.com</p>
+                        <p>Email: contact@RvhSpaces.com</p>
+                        <p>Phone: +91 98765 43210</p>
                         <p>Instagram: @RvhSpaces</p>
+                        <p>Address: Hyderabad, India</p>
                     </div>
 
                 </div>

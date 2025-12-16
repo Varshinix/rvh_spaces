@@ -271,9 +271,9 @@ export default function RatingsSection() {
                 </div>
             </div>
 
-            {/* ========================= */}
-            {/*      BRAND MARQUEE       */}
-            {/* ========================= 
+    
+            {/*      BRAND MARQUEE      
+           
 
             <div className={styles.marqueeSection}>
                 <div className={styles.marqueeTrack}>

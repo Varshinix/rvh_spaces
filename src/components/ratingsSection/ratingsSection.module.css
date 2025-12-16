@@ -228,7 +228,7 @@
 
 
 
-/* RESPONSIVE */
+/* RESPONSIVE 
 @media (max-width: 880px) {
   .container {
     grid-template-columns: 1fr;
@@ -258,7 +258,7 @@
     top: 85%;
     transform: translateY(0);
   }
-}
+} */
 
 
 /* ---- review ------ */
@@ -377,6 +377,163 @@
   transform: scale(1.1);
 } 
 */
+
+
+
+
+/* RESPONSIVENESS - Raing section Tablet */
+
+/* ========================= */
+/* MOBILE + SMALL TABLET */
+/* ========================= */
+@media (max-width: 880px) {
+  /* Main grid → stack */
+  .container {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    padding: 0 1.5rem;
+  }
+
+  /* Right content comes first */
+  .right {
+    order: -1;
+    padding-top: 0;
+    padding-left: 0;
+    text-align: center;
+  }
+
+  .description {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* Left layout stacks */
+  .leftRow {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  /* Stats column */
+  .leftStatsCol {
+    padding: 1.2rem 0;          /* reduced padding */
+    flex: unset;
+    margin: 0 auto;             /* center it */
+    align-items: center;
+    max-width: 460px;           /* slightly wider for better balance */
+  }
+
+  .block {
+    width: 100%;
+  }
+
+  /* Image responsiveness */
+  .imageWrapper {
+    width: 100%;
+  }
+
+  .bigImage {
+    width: 100%;
+    height: 260px;
+  }
+
+  /* Floating card reposition */
+  .floatingCard {
+    right: 16px;
+    top: auto;
+    bottom: -20px;
+    transform: none;
+  }
+}
+
+/* ========================= */
+/* SMALL MOBILE */
+/* ========================= */
+@media (max-width: 520px) {
+  /* Section padding */
+  .ratingsSection {
+    padding: 3.5rem 0;
+  }
+
+  /* Titles */
+  .title {
+    font-size: 1.6rem;
+  }
+
+  /* Blocks */
+  .block {
+    padding: 14px;
+  }
+
+  /* Stats text */
+  .smallStat {
+    font-size: 0.95rem;
+  }
+
+  .smallLabel {
+    font-size: 0.85rem;
+    margin-left: 4px;
+  }
+
+  /* Team images */
+  .teamImg {
+    width: 32px;
+    height: 32px;
+  }
+
+  /* Floating card */
+  .floatingCard {
+    padding: 14px 16px;
+  }
+
+  .floatingNumber {
+    font-size: 1.4rem;
+  }
+
+  /* Reviews */
+  .reviewsSection {
+    padding: 30px 18px;
+  }
+
+  .reviewsTitle {
+    font-size: 1.8rem;
+  }
+
+  .reviewCard {
+    width: 260px;
+  }
+}
+
+/* ========================= */
+/* TABLET ONLY (SIDE-BY-SIDE FIX) */
+/* ========================= */
+@media (max-width: 1024px) and (min-width: 881px) {
+  /* Keep stats + image in same row */
+  .leftRow {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 32px;
+  }
+
+  /* Adjust stats column */
+  .leftStatsCol {
+    padding: 1.8rem 2.2rem;
+    flex: 0.7;
+    margin: 0;
+    align-items: flex-start;
+  }
+
+  /* Image balance */
+  .imageWrapper {
+    flex: 1;
+  }
+
+  .bigImage {
+    width: 100%;
+    height: 360px;
+  }
+}
+
+
 
 
 

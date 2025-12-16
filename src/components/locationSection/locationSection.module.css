@@ -54,7 +54,7 @@
   justify-content: center;
   gap: 2rem;
   align-items: center;
-  margin-bottom: 3rem; 
+  margin-bottom: 3rem;
 }
 
 .card {
@@ -96,7 +96,7 @@
   font-size: 1rem;
   font-weight: 600;
   color: #fff;
-  background: linear-gradient(to top, rgba(0,0,0,0.65), transparent);
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.65), transparent);
   width: 100%;
 }
 
@@ -107,13 +107,14 @@
   align-items: center;
 }
 
-.quote, .desc {
+.quote1,
+.desc1 {
   font-size: 1rem;
   text-align: left;
   opacity: 0.8;
 }
 
-.desc {
+.desc1 {
   text-align: right;
 }
 
@@ -144,3 +145,134 @@
   transform: translateY(0);
 }
 
+
+/* --- Responsiveness ----- */
+/* ---------------- TABLET ---------------- */
+@media (max-width: 1024px) {
+  .locationsSection {
+    padding: 3rem 3rem;
+  }
+
+  .carousel {
+    gap: 1.2rem;
+  }
+
+  .card {
+    width: 300px;
+    height: 230px;
+  }
+
+  .centerCard {
+    transform: scale(1.05);
+  }
+
+  /*.bottomRow {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+    text-align: center;
+    margin-top: 2rem;
+  }
+
+  .quote1,
+  .desc1 {
+    text-align: center;
+  } */
+} 
+
+/* ---------- Responsive bottom row (tablet & mobile) ---------- */
+@media (max-width: 980px) {
+  .bottomRow {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "quote desc"
+      "btn btn";
+    row-gap: 1.5rem;
+  }
+
+  .quote1 {
+    grid-area: quote;
+    text-align: left;
+  }
+
+  .desc1 {
+    grid-area: desc;
+    text-align: right;
+  }
+
+  .exploreBtn {
+    grid-area: btn;
+    justify-self: center;
+  }
+}
+
+/* ---------------- MOBILE ---------------- */
+@media (max-width: 768px) {
+  .locationsSection {
+    padding: 2.5rem 1.5rem;
+  }
+
+  .topRow {
+    flex-direction: column;
+    gap: 1.2rem;
+    align-items: center;
+    margin-bottom: 3rem;
+  }
+
+  /* Show ONLY center card */
+  .carousel {
+    gap: 0;
+  }
+
+  .card {
+    display: none;
+  }
+
+  .centerCard {
+    display: block;
+    width: 100%;
+    height: 240px;
+    transform: scale(1);
+  }
+
+  /*.bottomRow {
+    grid-template-columns: 1fr;
+    gap: 1.2rem;
+    margin-top: 2.5rem;
+  }
+
+  .quote1,
+  .desc1 {
+    text-align: center;
+    font-size: 0.95rem;
+  }
+
+  .exploreBtn {
+    font-size: 1rem;
+  }*/
+
+}
+
+@media (max-width: 520px) {
+  .bottomRow {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "quote desc"
+      "btn btn";
+    row-gap: 1.2rem;
+  }
+
+  .quote1 {
+    grid-area: quote;
+    text-align: left;
+  }
+
+  .desc1 {
+    grid-area: desc;
+    text-align: right;
+  }
+
+  .exploreBtn {
+    grid-area: btn;
+    justify-self: center;
+  }
+}

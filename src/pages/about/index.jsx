@@ -1,38 +1,19 @@
-import React, { useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { Link, useLocation } from "react-router-dom";
 import { motion } from "framer-motion";
-import { Link, useNavigate } from "react-router-dom";
-import styles from "./home.module.css";
-
-import { LocationSection } from "../../components";
-import { RatingsSection } from "../../components";
-import { GallerySection } from "../../components";
+import styles from "./about.module.css";
 
 import coworkImg from '../../assets/cowork.jpg';
 import privateImg from '../../assets/private.jpg';
 import meetingImg from '../../assets/meeting.jpg';
 import bgVideo from "../../assets/abstract.mp4";
-{/*import img1 from "../../assets/img1.jpg";
-import img2 from "../../assets/img2.jpg";
-import img3 from "../../assets/img3.jpg";
-import img4 from "../../assets/img4.jpg";
-import img5 from "../../assets/img5.jpg"; */}
 
-
-export default function Home() {
-
-    const navigate = useNavigate();
-
-    const handleLearnMore = () => {
-        navigate("/about");
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    };
+export default function About() {
+    const [open, setOpen] = useState(false);
+    const location = useLocation();
 
     useEffect(() => {
-
-        const nav = document.querySelector(`.${styles.navbar}`);
-        const bg = document.querySelector(`.${styles.heroBg}`);
         const fadeItems = document.querySelectorAll(`.${styles.fadeItem}`);
-
         const headingEl = document.querySelector(`.${styles.bigHeading}`);
         const cardEls = Array.from(document.querySelectorAll(`.${styles.reveal}`));
 
@@ -54,18 +35,7 @@ export default function Home() {
         };
 
         const handleScroll = () => {
-            const scrollY = window.scrollY;
-
-            // Navbar
-            if (scrollY > 20) nav.classList.add(styles.scrolled);
-            else nav.classList.remove(styles.scrolled);
-
-            //  Hero Parallax 
-            if (bg) {
-                bg.style.transform = `translateY(${scrollY * 0.25}px) scale(${1 + scrollY * 0.0004})`;
-            }
-
-            // Scroll Fade-in items
+            // Fade-in items (if any used later)
             fadeItems.forEach((el) => {
                 const rect = el.getBoundingClientRect();
                 if (rect.top < window.innerHeight - 100) {
@@ -73,70 +43,134 @@ export default function Home() {
                 }
             });
 
-            // 🔹 Moved scroll-triggered reveals *here*
             revealWhySection();
             revealCardsOnScroll();
-
         };
 
         window.addEventListener("scroll", handleScroll);
         handleScroll();
+
         return () => window.removeEventListener("scroll", handleScroll);
-
     }, []);
-
-
-    const aboutRef = useRef(null);
-
-    const handleExploreClick = () => {
-        aboutRef.current?.scrollIntoView({
-            behavior: "smooth",
-            block: "start",
-        });
-    };
 
 
     return (
         <>
+            {/*<header className={styles.navbar}>
+                <h2 className={styles.logo}>RVH Spaces</h2>
+
+                <nav className={`${styles.mobileMenu} ${open ? styles.open : ""}`}>
+                    <ul className={styles.navLinks}>
+                        <li className={styles.navItem}>
+                            <Link to="/" className={styles.link}>Home</Link>
+                        </li>
+                        <li className={styles.navItem}>
+                            <Link to="/about" className={styles.link}>About</Link>
+                        </li>
+                        <li className={styles.navItem}>
+                            <Link to="/locations" className={styles.link}>Locations</Link>
+                        </li>
+                        <li className={styles.navItem}>
+                            <Link to="/ourStory" className={styles.link}>OurStory</Link>
+                        </li>
+                        <li className={styles.navItem}>
+                            <Link to="/contact" className={styles.link}>Contact</Link>
+                        </li>
+                    </ul>
+                </nav> 
+
+                </header>               
+            */}
 
             <header className={styles.navbar}>
                 <h2 className={styles.logo}>RVH Spaces</h2>
 
-                <nav>
+                {/* Desktop / Tablet Nav */}
+                <nav className={styles.desktopNav}>
                     <ul className={styles.navLinks}>
-                        <li className={`${styles.navItem} ${styles.active}`}>Home</li>
-                        <li className={styles.navItem}>
+                        <li className={`${styles.navItem} ${location.pathname === "/" ? styles.active : ""}`}>
+                            <Link to="/" className={styles.link}>Home</Link>
+                        </li>
+
+                        <li className={`${styles.navItem} ${location.pathname === "/about" ? styles.active : ""}`}>
                             <Link to="/about" className={styles.link}>About</Link>
                         </li>
-                        <li className={styles.navItem}>Locations</li>
-                        <li className={styles.navItem}>Our Story</li>
-                        <li className={styles.navItem}>Contact</li>
+
+                        <li className={styles.navItem}>
+                            <Link to="/locations" className={styles.link}>Locations</Link>
+                        </li>
+
+                        <li className={styles.navItem}>
+                            <Link to="/ourStory" className={styles.link}>Our Story</Link>
+                        </li>
+
+                        <li className={styles.navItem}>
+                            <Link to="/contact" className={styles.link}>Contact</Link>
+                        </li>
                     </ul>
                 </nav>
+
+                {/* Hamburger - mobile only */}
+                <div className={styles.hamburger} onClick={() => setOpen(true)}>
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
             </header>
 
-            <section className={styles.hero}>
-                <div className={styles.heroBg}></div>
-                <div className={styles.heroOverlay}></div>
-                <div className={styles.heroContent}>
-                    <h1 className={styles.title}>
-                        Step Into <br />
-                        Your Future Workspace
-                    </h1>
-
-                    <p className={styles.subText}>
-                        Beautifully designed coworking spaces where ideas grow & people connect.
-                    </p>
-
-                    <button className={styles.primaryBtn} onClick={handleExploreClick}>Explore Spaces</button>
+            {/* Mobile Fullscreen Menu */}
+            <div className={`${styles.mobileMenu} ${open ? styles.open : ""}`}>
+                <div className={styles.menuHeader}>
+                    <h2 className={styles.menuTitle}>RVH Spaces</h2>
+                    <button className={styles.closeBtn} onClick={() => setOpen(false)}>✕</button>
                 </div>
 
-                <div className={styles.glassFeatures}>
-                    <div className={styles.featureCard}>★ Fast Wi-Fi & Private Cabins</div>
-                    <div className={styles.featureCard}>★ Café Access & Events</div>
-                    <div className={styles.featureCard}>★ Flexible Plans 24×7</div>
-                </div>
-            </section>
+                {/*<ul className={styles.mobileLinks}>
+                    <li onClick={() => setOpen(false)}>
+                        <Link to="/" className={styles.mobileLink}>Home</Link>
+                    </li>
+
+                    <li onClick={() => setOpen(false)}>
+                        <Link to="/about" className={styles.mobileLink}>About</Link>
+                    </li>
+
+                    <li onClick={() => setOpen(false)}>
+                        <Link to="/locations" className={styles.mobileLink}>Locations</Link>
+                    </li>
+
+                    <li onClick={() => setOpen(false)}>
+                        <Link to="/ourStory" className={styles.mobileLink}>Our Story</Link>
+                    </li>
+
+                    <li onClick={() => setOpen(false)}>
+                        <Link to="/contact" className={styles.mobileLink}>Contact</Link>
+                    </li>
+                </ul> */}
+
+                <ul className={styles.mobileLinks}>
+                    <li onClick={() => setOpen(false)}>
+                        <Link to="/" className={`${styles.mobileLink} ${location.pathname === "/" ? styles.activeMobile : ""}`}> Home </Link>
+                    </li>
+
+                    <li onClick={() => setOpen(false)}>
+                        <Link to="/about" className={`${styles.mobileLink} ${location.pathname === "/about" ? styles.activeMobile : ""}`}>About</Link>
+                    </li>
+
+                    <li onClick={() => setOpen(false)}>
+                        <Link to="/locations" className={`${styles.mobileLink} ${location.pathname === "/locations" ? styles.activeMobile : ""}`}> Locations </Link>
+                    </li>
+
+                    <li onClick={() => setOpen(false)}>
+                        <Link to="/ourStory" className={`${styles.mobileLink} ${location.pathname === "/ourStory" ? styles.activeMobile : ""}`}> Our Story </Link>
+                    </li>
+
+                    <li onClick={() => setOpen(false)}>
+                        <Link to="/contact" className={`${styles.mobileLink} ${location.pathname === "/contact" ? styles.activeMobile : ""}`}> Contact </Link>
+                    </li>
+                </ul>
+
+
+            </div>
 
 
 
@@ -145,7 +179,6 @@ export default function Home() {
 
 
             <motion.section
-                ref={aboutRef}
                 className={styles.ourSpaces}
                 initial="hidden"
                 whileInView="show"
@@ -263,7 +296,7 @@ export default function Home() {
                     }}
                     viewport={{ once: false, amount: 0.3 }}
                 >
-                    <button className={styles.learnMoreBtn} onClick={handleLearnMore}>Learn More</button>
+                    <button className={styles.learnMoreBtn}>Learn More</button>
                 </motion.div>
 
             </motion.section>
@@ -339,15 +372,52 @@ export default function Home() {
                     </div>
                 </div>
             </section>
-            {/* ---------- end WhyChooseUs ---------- */}
 
 
-            <LocationSection />
-            <RatingsSection />
-            <GallerySection />
+
+
+            {/* ------- footer --------- */}
+            <footer className={styles.footer}>
+                <div className={styles.footerColumns}>
+
+                    <div className={styles.footerCol}>
+                        <h4>Rvh Spaces</h4>
+                        <p>Designing meaningful digital <br /> experiences. Crafting digital spaces <br /> with purpose and clarity.</p>
+                    </div>
+
+                    <div className={styles.footerCol}>
+                        <h4>Quick Links</h4>
+                        <a href="#home">Home</a>
+                        <a href="#About">About</a>
+                        <a href="#locations">locations</a>
+                        <a href="#Our Story">Our Story</a>
+                        <a href="#contact">Contact</a>
+                    </div>
+
+                    <div className={styles.footerCol}>
+                        <h4>Support</h4>
+                        <a>FAQ</a>
+                        <a>Privacy Policy</a>
+                        <a>Terms & Conditions</a>
+                    </div>
+
+                    <div className={styles.footerCol}>
+                        <h4>Connect</h4>
+                        <p>Email: contact@RvhSpaces.com</p>
+                        <p>Phone: +91 98765 43210</p>
+                        <p>Instagram: @RvhSpaces</p>
+                        <p>Address: Hyderabad, India</p>
+                    </div>
+
+                </div>
+
+                <p className={styles.footerBottom}>© 2025 YRvhSpaces. All rights reserved.</p>
+            </footer>
+
+
 
 
         </>
-    );
-}
 
+    )
+}
